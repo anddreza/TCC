@@ -1,7 +1,7 @@
 import { TextSearchBox } from '../components/TextSearchBox';
 import { useLazyGetPropertiesQuery } from '../servies_properties';
 import { useState } from 'react';
-import { Result, ResultList } from '../components/Result';
+import { ResultList } from '../components/Result';
 
 export const PropertiesSearch = () => {
   const [getProperties] = useLazyGetPropertiesQuery();
@@ -11,7 +11,7 @@ export const PropertiesSearch = () => {
         console.log('Search submitted with value:', value);
         const result = await getProperties(value);
         console.log('Properties fetched:', result);
-        setPropertiesId(result.data.id);
+        setPropertiesId(result.data.ids);
       }
 
     return (
