@@ -2,23 +2,15 @@
 
 from crewai import LLM, Agent, Task, Crew
 from dotenv import load_dotenv
-from crewai_tools import SerperDevTool, MCPServerAdapter
+from crewai_tools import MCPServerAdapter
 from mcp import StdioServerParameters
-from crewai.tools import tool
-
-from litellm import completion
-from pymongo import MongoClient
-from llm.tools.query_database import QueryTool
-
 import os
 
 load_dotenv()
-query_tool_connection = QueryTool()
 
 os.environ['GROQ_API_KEY'] = "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"
-os.environ["SERPER_API_KEY"]= "5eabfc13ab8e09f58bbc2c9ffd7cc0a8434745d9"
-
 GOOGLE_API_KEY = "AIzaSyBHm5HiI_zOWkmFFkCpM8DceLoeU4zAQdo"
+
 backend_root = os.path.dirname(os.path.abspath(__file__))
 
 server_params = StdioServerParameters(
@@ -28,18 +20,6 @@ server_params = StdioServerParameters(
           **os.environ
     }
 )
-
-
-@tool
-def mongodb_tool() -> str:
-    """Útil para buscar e recuperar informações de documentos no MongoDB."""
-    try:
-        #query = eval(query_string) 
-        #    results = list(Collection.find(query, limit=5))
-        return ["test_id_1"]
-    except Exception as e:
-        return f"Erro ao executar a consulta no MongoDB: {e}"
-
 
 def llm_property_search(user_preferences: str):
     with MCPServerAdapter(server_params) as tools:
@@ -66,7 +46,7 @@ def llm_property_search(user_preferences: str):
             expected_output=(
                 "Mostre o que a Tool está enviando, não altere as informações com mais caracteres trabalhe somente com o que foi retornado. Tool responderá uma lista de strings com os IDs dos imóveis encontrados."
                 "Todas as informações tem que ser dada em português para o usuário final."
-                "Retorne os IDs dos imóveis encontrados: Example: ['08d03e0f1f1b13923114cd1a']"
+                "Retorne os IDs dos imóveis encontrados: Example: [\"08d03e0f1f1b13923114cd1a\"]"
                 "Não diga nada além do que ele enviar a você, trabalhe somente com as informações que foi enviado."
                 "O resultado JSON parsable string"
             ),   
