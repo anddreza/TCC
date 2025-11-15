@@ -19,10 +19,6 @@ def get_properties(user_preferences: str):
 #In the properties endpoint -> Return { "ids": property_ids } if the LLM worked
 #in the frontend we want to save the Ids in the state import {useState} from 'react'
 
-    house = {
-        "message": "Here is a property that matches your preferences.",
-    }
-
     ids = parse_id(result.raw)
 
     return {
@@ -38,13 +34,17 @@ def parse_id(response: str):
     except json.JSONDecodeError:
         return []
     
-print("---------------------------------")
+def get_properties_collection():
+    cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
+
+    db = cliente[DB_NAME]
+    colecao = db[COLLECTION_NAME]
+    return colecao
+
+
 def findbyId(id: str):
     try:
-        cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
-
-        db = cliente[DB_NAME]
-        colecao = db[COLLECTION_NAME]
+        colecao = get_properties_collection()
         
         resultado = colecao.find_one({ "_id": ObjectId(id) }) 
         if resultado:
@@ -55,7 +55,6 @@ def findbyId(id: str):
     
     except Exception as e:
         print(f"Erro ao agregar dados no MongoDB: {e}")
-print("---------------------------------")
 
 
 @properties_router.get("/properties/{id}")

@@ -1,0 +1,190 @@
+{
+  "_id": "68d03e0f1f6b16923112cc1c",
+  "tipo": "Apartamento",
+  "bairro": "Vila Lenzi",
+  "codigobairro": {
+    "$numberInt": "7"
+  },
+  "cidade": "Jaraguá do Sul",
+  "codigofinalidade": {
+    "$numberInt": "1"
+  },
+  "estado": "SC",
+  "numeroquartos": "1",
+  "numerovagas": "1",
+  "numerobanhos": "1",
+  "numerosuites": "1",
+  "datahoracadastro": "2025-08-06 16:12:11",
+  "datahoraultimaalteracao": "2025-09-19 15:16:38",
+  "codigo": {
+    "$numberInt": "18188"
+  },
+  "titulo": "Apartamento para alugar, Vila Lenzi - Jaraguá do Sul/SC",
+  "fotos": [
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/2ajf7-imagem-do-whatsapp-de-2025-07-24-as-144153-923b7809-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/2ajf7-imagem-do-whatsapp-de-2025-07-24-as-144153-923b7809-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/2ajf7-imagem-do-whatsapp-de-2025-07-24-as-144153-923b7809-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/2ajf7-imagem-do-whatsapp-de-2025-07-24-as-144153-923b7809-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kdf2s-imagem-do-whatsapp-de-2025-07-24-as-144153-04eac864-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kdf2s-imagem-do-whatsapp-de-2025-07-24-as-144153-04eac864-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kdf2s-imagem-do-whatsapp-de-2025-07-24-as-144153-04eac864-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kdf2s-imagem-do-whatsapp-de-2025-07-24-as-144153-04eac864-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/g84f6-imagem-do-whatsapp-de-2025-07-24-as-144153-a496ed6a-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/g84f6-imagem-do-whatsapp-de-2025-07-24-as-144153-a496ed6a-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/g84f6-imagem-do-whatsapp-de-2025-07-24-as-144153-a496ed6a-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/g84f6-imagem-do-whatsapp-de-2025-07-24-as-144153-a496ed6a-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/agn2k-imagem-do-whatsapp-de-2025-07-24-as-144153-e7240383-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/agn2k-imagem-do-whatsapp-de-2025-07-24-as-144153-e7240383-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/agn2k-imagem-do-whatsapp-de-2025-07-24-as-144153-e7240383-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/agn2k-imagem-do-whatsapp-de-2025-07-24-as-144153-e7240383-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/ghvdw-imagem-do-whatsapp-de-2025-07-24-as-144153-ff35438d-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/ghvdw-imagem-do-whatsapp-de-2025-07-24-as-144153-ff35438d-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/ghvdw-imagem-do-whatsapp-de-2025-07-24-as-144153-ff35438d-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/ghvdw-imagem-do-whatsapp-de-2025-07-24-as-144153-ff35438d-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/47yqr-imagem-do-whatsapp-de-2025-07-24-as-144152-cd4e416c-1754507598.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/47yqr-imagem-do-whatsapp-de-2025-07-24-as-144152-cd4e416c-1754507598.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/47yqr-imagem-do-whatsapp-de-2025-07-24-as-144152-cd4e416c-1754507598.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/47yqr-imagem-do-whatsapp-de-2025-07-24-as-144152-cd4e416c-1754507598.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kjieui-imagem-do-whatsapp-de-2025-07-24-as-144153-68a41856-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kjieui-imagem-do-whatsapp-de-2025-07-24-as-144153-68a41856-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kjieui-imagem-do-whatsapp-de-2025-07-24-as-144153-68a41856-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/kjieui-imagem-do-whatsapp-de-2025-07-24-as-144153-68a41856-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/wgk9of-imagem-do-whatsapp-de-2025-07-24-as-144153-a1e7bf6d-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/wgk9of-imagem-do-whatsapp-de-2025-07-24-as-144153-a1e7bf6d-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/wgk9of-imagem-do-whatsapp-de-2025-07-24-as-144153-a1e7bf6d-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/wgk9of-imagem-do-whatsapp-de-2025-07-24-as-144153-a1e7bf6d-1754507597.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/d2bkb-imagem-do-whatsapp-de-2025-07-24-as-144152-f1f79082-1754507598.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/d2bkb-imagem-do-whatsapp-de-2025-07-24-as-144152-f1f79082-1754507598.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/d2bkb-imagem-do-whatsapp-de-2025-07-24-as-144152-f1f79082-1754507598.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/d2bkb-imagem-do-whatsapp-de-2025-07-24-as-144152-f1f79082-1754507598.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/h8wby-imagem-do-whatsapp-de-2025-07-24-as-144153-09d3e902-1754507598.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/h8wby-imagem-do-whatsapp-de-2025-07-24-as-144153-09d3e902-1754507598.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/h8wby-imagem-do-whatsapp-de-2025-07-24-as-144153-09d3e902-1754507598.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/h8wby-imagem-do-whatsapp-de-2025-07-24-as-144153-09d3e902-1754507598.jpg?1754534124"
+    },
+    {
+      "descricao": "Apartamento para aluguel no Vila Lenzi: ",
+      "empreendimento": false,
+      "condominio": false,
+      "datahoraalteracao": "06/08/2025 23:35:24",
+      "url": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/5vaue-imagem-do-whatsapp-de-2025-07-24-as-144153-452140fe-1754507597.jpg?1754534124",
+      "urlm": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/5vaue-imagem-do-whatsapp-de-2025-07-24-as-144153-452140fe-1754507597.jpg?1754534124",
+      "urlp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/5vaue-imagem-do-whatsapp-de-2025-07-24-as-144153-452140fe-1754507597.jpg?1754534124",
+      "urlpp": "https://cdn.imoview.com.br/itaivan/Imoveis/18188/5vaue-imagem-do-whatsapp-de-2025-07-24-as-144153-452140fe-1754507597.jpg?1754534124"
+    }
+  ],
+  "fotos360": [],
+  "captadores": [
+    {
+      "codigo": {
+        "$numberInt": "56"
+      },
+      "nome": "Fernando do Prado",
+      "email": "fernando@itaivan.com",
+      "telefone": "(47) 99150-5140",
+      "principal": true,
+      "percentual": {
+        "$numberInt": "100"
+      },
+      "foto": "https://cdn.imoview.com.br/itaivan/Usuarios/56/avatar.jpg",
+      "creci": "69351"
+    }
+  ],
+  "codigoauxiliar": "A6818",
+  "areainterna": "65,00",
+  "areaprincipaltratado": {
+    "$numberInt": "6500"
+  },
+  "valor": "R$ 2.800,00",
+  "valoranterior": {
+    "$numberInt": "0"
+  },
+  "valortratado": {
+    "$numberInt": "2800"
+  },
+  "codigodestaque": {
+    "$numberInt": "1"
+  },
+  "codigomae": {
+    "$numberInt": "0"
+  },
+  "nomeempreendimento": "",
+  "empreendimento": {
+    "$numberInt": "0"
+  },
+  "empreendimentofilho": {
+    "$numberInt": "0"
+  },
+  "latitude": "-26.4807074",
+  "longitude": "-49.0959666",
+  "nomecondominio": null,
+  "codigocondominio": null,
+  "total_registros": {
+    "$numberInt": "82"
+  },
+  "tempoCadastro": {
+    "$numberInt": "46"
+  },
+  "url_amigavel": "apartamento-para-alugar-vila-lenzi-jaragua-do-sul-sc",
+  "embedding_vector": [],
+  "embeddings_text": " \n    Tipo: Apartamento. \n    chuveiro: 1 . \n    NumeroDeQuartos: 1 .\n    NumeroDeSuite: 1 . \n    Garagem: 1 .\n    Valor: R$ 2.800,00\n    AreaInterna: 65,00 .\n"
+}
