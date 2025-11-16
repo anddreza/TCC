@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 export const llmApi = createApi({
   reducerPath: "llmApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000",
+    baseUrl: process.env.REACT_APP_API_URL || "http://localhost:8000",
     credentials: "include",
   }),
   endpoints: (build) => ({
