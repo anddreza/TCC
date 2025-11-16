@@ -1,0 +1,33 @@
+name: Deploy Backend to Render
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "rest_api/**"
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Trigger Render Deployment
+        env:
+          RENDER_API_KEY: ${{ secrets.BACKEND_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.BACKEND_PROJECT_ID }}
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${BACKEND_PROJECT_ID}/deploys" \
+            -H "Authorization: Bearer ${BACKEND_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+
+      - name: Deployment triggered
+        run: |
+          echo "Deployment triggered successfully for service ${BACKEND_PROJECT_ID}"
+          echo "Check deployment status at: https://dashboard.render.com/web/${BACKEND_PROJECT_ID}"
