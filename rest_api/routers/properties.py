@@ -4,9 +4,10 @@ from pymongo import MongoClient
 from llm.multi_agent import llm_property_search
 import json
 from bson import ObjectId
+from llm.mongo_itaivan import COLLECTION_NAME, DB_NAME 
+from config import Settings
 
-from llm.mongo_itaivan import COLLECTION_NAME, DB_NAME, MONGO_URI 
-
+settings = Settings()
 properties_router = APIRouter()
 
 @properties_router.get("/properties")
@@ -35,7 +36,7 @@ def parse_id(response: str):
         return []
     
 def get_properties_collection():
-    cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
+    cliente = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
 
     db = cliente[DB_NAME]
     colecao = db[COLLECTION_NAME]

@@ -1,11 +1,13 @@
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from functools import lru_cache
 from llm.mongo_itaivan import coletar_dados, salvar_novos_no_mongo
+from config import Settings
 
+settings = Settings()
 
 fields = ["numerobanhos", "numeroquartos", "numerosuites", "numerovagas", "valor", "areainterna"]
 
-GOOGLE_API_KEY = "AIzaSyBHm5HiI_zOWkmFFkCpM8DceLoeU4zAQdo"
+GOOGLE_API_KEY = settings.google_api_key
 
 def get_embeddings_model() -> GoogleGenerativeAIEmbeddings:
     """Get cached embeddings model instance."""

@@ -2,10 +2,12 @@ import requests
 import ssl
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from config import Settings
 
+settings = Settings()
 
 # 🔹 Configurações
-MONGO_URI = "mongodb+srv://anddrezas:pwd123@cluster0.xhwszy1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"  
+MONGO_URI = settings.mongo_uri 
 DB_NAME = "apartamentos"
 COLLECTION_NAME = "second_test_imoveis"
 API_URL = "https://www.itaivan.com/retornar-imoveis-disponiveis"
@@ -81,41 +83,6 @@ def coletar_dados():
 
     }       
     
-    
-#     try:
-#         # A API precisa de uma lista de imóveis.
-#         response = requests.post(API_URL, headers=headers, timeout=10, data=body)
-#         response.raise_for_status() 
-        
-#         # A resposta é um dicionário, mas o insert_many precisa de uma lista.
-#         # Ajustamos o retorno para garantir que seja uma lista.
-#         data = response.json()
-#         if "imoveis" in data and isinstance(data["imoveis"], list):
-#             return data["imoveis"]
-#         else:
-#             print("⚠ Resposta da API não contém a lista 'imoveis'.")
-#             return []
-            
-
-
-# def salvar_no_mongo(dados):
-#     cliente = MongoClient(MONGO_URI)
-#     db = cliente[DB_NAME]
-#     colecao = db[COLLECTION_NAME]
-
-#     # 🔹 Limpa dados antigos
-#     colecao.delete_many({})
-    
-#     if dados:
-#         colecao.insert_many(dados)
-#         print(f"✅ {len(dados)} registros inseridos no MongoDB.")
-#     else:
-#         print("⚠ Nenhum dado para inserir.")
-
-# if __name__ == "__main__":
-#     print("Coletando dados da API...")
-#     dados = coletar_dados()
-#     salvar_no_mongo(dados)
 
 
     try:
@@ -207,26 +174,9 @@ def aggregate_mongo(aggregation_pipeline):
         resultado = colecao.aggregate(aggregation_pipeline)
         return resultado
     
-       # print(f"✅ {len(aggregation_pipeline)} novos apartamentos agregados no MongoDB com sucesso!")
     except Exception as e:
         print(f"❌ Erro ao agregar dados no MongoDB: {e}")
     
-
-
-
-# def salvar_no_mongo(dados):
-#     cliente = MongoClient(MONGO_URI)
-#     db = cliente[DB_NAME]
-#     colecao = db[COLLECTION_NAME]
-
-#     colecao.delete_many({})
-    
-#     if dados:
-#         colecao.insert_many(dados)
-#         print(f"✅ {len(dados)} registros inseridos no MongoDB.")
-#     else:
-#         print("⚠ Nenhum dado para inserir.")
-
 
 if __name__ == "__main__":
     coletar_dados()

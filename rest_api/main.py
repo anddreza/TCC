@@ -8,7 +8,7 @@ settings = Settings()
 
 @app.get("/")
 def found_data():     
-    print(settings.allow_origin)
+    print(settings.google_api_key)
     return {"success": True, "message": "API is running"}
     
 app.add_middleware(

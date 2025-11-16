@@ -74,19 +74,6 @@ def run_aggregation(search_term):
     return all_results
     
 
-
-# def vector_search():
-#     results = properties_collection.aggregate([
-#         vector_search_stage,
-#         project_stage,
-#     ]).to_list(length=3) # no limit on how many are returned
-
-#     for result in results:
-#         if '_id' in result:
-#             result['_id'] = str(result['_id'])
-    
-#     return results
-
 if __name__ == "__main__":
     results = run_aggregation(search_term_1)
     print(results)

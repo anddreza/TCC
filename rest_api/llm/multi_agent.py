@@ -5,11 +5,12 @@ from dotenv import load_dotenv
 from crewai_tools import MCPServerAdapter
 from mcp import StdioServerParameters
 import os
-
+from config import Settings
 load_dotenv()
+settings = Settings()
 
-os.environ['GROQ_API_KEY'] = "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"
-GOOGLE_API_KEY = "AIzaSyBHm5HiI_zOWkmFFkCpM8DceLoeU4zAQdo"
+GOOGLE_API_KEY = settings.google_api_key
+os.environ["GOOGLE_API_KEY"] = settings.google_api_key
 
 backend_root = os.path.dirname(os.path.abspath(__file__))
 
