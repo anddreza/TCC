@@ -2,39 +2,42 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 
 const onFinishFailed = errorInfo => {
-  console.log('Failed:', errorInfo);
+    console.log('Failed:', errorInfo);
 };
 
 
 
-export const TextSearchBox = (props) => { 
+export const TextSearchBox = (props) => {
     const handleSubmit = ({ Prompt }) => props.onSubmit(Prompt);
 
     return (
         <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600,  width: '100%' }}
+            layout="vertical"
+            style={{
+                maxWidth: 600,
+                width: '100%',
+                textAlign: 'center',
+            }}
             initialValues={{ remember: true }}
             onFinish={handleSubmit}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <Form.Item
-            label="Pesquise seu imóvel ideal"
-            name="Prompt"
-            layout="vertical"
-            rules={[{ required: true, message: 'Please insert type your ideal apart' }]}
+                label="Pesquise seu imóvel ideal"
+                name="Prompt"
+                style={{ width: '100%' }}
+                rules={[{ required: true, message: 'Por favor, digite algo!' }]}
             >
-            <Input />
+                <Input />
             </Form.Item>
 
-            <Form.Item label={null} >
-            <Button type="primary" htmlType="submit">
-                Pesquisar
-            </Button>
+            <Form.Item>
+                <Button type="primary" htmlType="submit">
+                    Pesquisar
+                </Button>
             </Form.Item>
         </Form>
+
     );
 }

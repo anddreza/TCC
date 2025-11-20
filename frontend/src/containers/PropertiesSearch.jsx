@@ -23,7 +23,8 @@ export const PropertiesSearch = () => {
       alignItems: 'center',
       height: '100vh',
       paddingTop: '100px',
-      width: '100%'
+      width: '100%', 
+      backgroundColor: '#f0f2f5',
     }}>
       <HomeOutlined style={{ fontSize: '50px' }} />
       <h1>Assistente de Imóveis</h1>
