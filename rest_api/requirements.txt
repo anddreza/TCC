@@ -43,6 +43,7 @@ frozenlist==1.8.0
 fsspec==2025.10.0
 google-auth==2.43.0
 googleapis-common-protos==1.72.0
+google-genai==1.51.0
 grpcio==1.76.0
 h11==0.16.0
 hf-xet==1.2.0
