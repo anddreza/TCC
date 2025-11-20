@@ -15,21 +15,22 @@ export const TextSearchBox = (props) => {
             name="basic"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
+            style={{ maxWidth: 600,  width: '100%' }}
             initialValues={{ remember: true }}
             onFinish={handleSubmit}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
             <Form.Item
-            label="Search"
+            label="Pesquise seu imóvel ideal"
             name="Prompt"
+            layout="vertical"
             rules={[{ required: true, message: 'Please insert type your ideal apart' }]}
             >
             <Input />
             </Form.Item>
 
-            <Form.Item label={null}>
+            <Form.Item label={null} >
             <Button type="primary" htmlType="submit">
                 Pesquisar
             </Button>
