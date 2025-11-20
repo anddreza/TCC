@@ -10,8 +10,7 @@ settings = Settings()
 
 @app.get("/")
 def found_data():     
-    print(settings.allow_origin)
-    return {"success": True, "message": settings.allow_origin}
+    return {"example_result": True}
     
 app.add_middleware(
     CORSMiddleware,
