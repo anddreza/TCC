@@ -19,8 +19,8 @@ jobs:
 
       - name: Trigger Render Deployment
         env:
-          RENDER_API_KEY: ${{ secrets.BACKEND_API_KEY }}
-          RENDER_SERVICE_ID: ${{ secrets.BACKEND_PROJECT_ID }}
+          BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
+          BACKEND_PROJECT_ID: ${{ secrets.BACKEND_PROJECT_ID }}
         run: |
           curl -X POST "https://api.render.com/v1/services/${BACKEND_PROJECT_ID}/deploys" \
             -H "Authorization: Bearer ${BACKEND_API_KEY}" \
