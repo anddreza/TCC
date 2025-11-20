@@ -69,6 +69,7 @@ kubernetes==34.1.0
 lance-namespace==0.0.21
 lance-namespace-urllib3-client==0.0.21
 lancedb==0.25.3
+langchain-google-genai==3.0.3
 lxml==6.0.2
 markdown-it-py==4.0.0
 MarkupSafe==3.0.3
