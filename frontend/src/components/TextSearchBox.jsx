@@ -31,7 +31,7 @@ export const TextSearchBox = (props) => {
 
             <Form.Item label={null}>
             <Button type="primary" htmlType="submit">
-                Submit
+                Pesquisar
             </Button>
             </Form.Item>
         </Form>

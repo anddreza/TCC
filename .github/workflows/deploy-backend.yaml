@@ -25,7 +25,7 @@ jobs:
           curl -X POST "https://api.render.com/v1/services/${BACKEND_PROJECT_ID}/deploys" \
             -H "Authorization: Bearer ${BACKEND_API_KEY}" \
             -H "Content-Type: application/json" \
-            -d '{}'
+            -d '{"clearCache": "clear"}'
 
       - name: Deployment triggered
         run: |

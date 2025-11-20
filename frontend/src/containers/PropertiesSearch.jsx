@@ -16,8 +16,9 @@ export const PropertiesSearch = () => {
 
     return (
     <div>
-      <h1>Properties Search</h1>
-      <TextSearchBox  onSubmit={submit}/> 
+      <h1>Assistente de Imóveis</h1>
+  
+      <TextSearchBox onSubmit={submit}/> 
       <ResultList id={propertiesId}/>
     </div>
   );

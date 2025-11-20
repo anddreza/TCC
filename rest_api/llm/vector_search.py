@@ -63,7 +63,7 @@ def create_aggregation(search_embedding_vector):
     return [firstStep, secondStep]
     # - project
 
-# 4. Run the aggregation
+# Run the aggregation
 def run_aggregation(search_term):
     vector = create_vector(search_term)
     aggregation =  create_aggregation(vector)

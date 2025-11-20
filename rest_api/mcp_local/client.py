@@ -10,7 +10,7 @@ mcp = Client("http://localhost:8080")
 # Registra o MCP no contexto do modelo
 client.register_context_server(mcp)
 
-# Envia prompt
+# Envia prompt PARA O LUGAR CERTO
 response = client.responses.create(
     model="gpt-4.1",
     input=[{"role": "user", "content": "Liste os usuários no banco MongoDB"}]

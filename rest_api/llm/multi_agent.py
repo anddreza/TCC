@@ -1,29 +1,49 @@
 # -*- coding: utf-8 -*-
 
 from crewai import LLM, Agent, Task, Crew
-from dotenv import load_dotenv
 from crewai_tools import MCPServerAdapter
+from dotenv import load_dotenv
 from mcp import StdioServerParameters
 import os
 from config import Settings
+
 load_dotenv()
 settings = Settings()
 
 GOOGLE_API_KEY = settings.google_api_key
 os.environ["GOOGLE_API_KEY"] = settings.google_api_key
 
-backend_root = os.path.dirname(os.path.abspath(__file__))
+# backend_root = os.path.dirname(os.path.abspath(__file__))
 
-server_params = StdioServerParameters(
-    command="python3", 
-    args=["properties_mcp_server.py"],
-    env={"UV_PYTHON": "3.12",
-          **os.environ
-    }
-)
+# server_params = StdioServerParameters(
+#     command="python3", 
+#     args=["properties_mcp_server.py"],
+#     env={"UV_PYTHON": "3.12",
+#           **os.environ
+#     }
+# )
 
 def llm_property_search(user_preferences: str):
-    with MCPServerAdapter(server_params) as tools:
+    backend_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+    server_path = os.path.join(backend_root, "properties_mcp_server.py") 
+
+    print(f"Backend root: {backend_root}")
+    print(f"Server path: {server_path}")
+    print(f"Server exists: {os.path.exists(server_path)}")
+    print(settings.mongo_uri)
+    print(settings.google_api_key)
+
+    server_params = StdioServerParameters(
+        command="python",
+        args=[server_path],
+        env={
+            "PYTHONPATH": backend_root,
+            "MONGO_URI": settings.mongo_uri,
+            "GOOGLE_API_KEY": settings.google_api_key,
+        }
+    )
+
+    with MCPServerAdapter(server_params, connect_timeout=200) as tools: 
         print(f"Available tools from Stdio MCP server: {[tool.name for tool in tools]}")
         market_researcher = Agent(
             role="Analista de Busca de Imóveis",
