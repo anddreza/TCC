@@ -2,3 +2,5 @@ llm-app
 .venv
 .vscode
 front/my-app/node_modules
+frontend/.env
+rest_api/.env
