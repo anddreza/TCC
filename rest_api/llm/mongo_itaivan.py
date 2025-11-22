@@ -6,13 +6,13 @@ from config import Settings
 
 settings = Settings()
 
-# 🔹 Configurações
+
 MONGO_URI = settings.mongo_uri 
 DB_NAME = "apartamentos"
 COLLECTION_NAME = "second_test_imoveis"
 API_URL = "https://www.itaivan.com/retornar-imoveis-disponiveis"
 
-def coletar_dados():
+def collect_informations():
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -86,66 +86,40 @@ def coletar_dados():
 
 
     try:
-        print("Fazendo requisição para a API...")
         response = requests.post(API_URL, headers=headers, data=body, timeout=10)
-        
-        # resposta
-        print(f"Status Code da resposta: {response.status_code}")
-        response.raise_for_status() # 200 (OK)
+        response.raise_for_status() 
 
-        
-        # requisição no formato JSON, que é mais legível.
-        # print("\n✅ Requisição bem-sucedida! Conteúdo da resposta:")
-        # print(response.json())
-        
-        # Ajustamos o retorno para garantir que seja uma lista.
         data = response.json()
         if "lista" in data and isinstance(data["lista"], list):
             return data["lista"]
         else:
-            print("⚠ Resposta da API não contém a lista 'imoveis'.")
             return []
         
     except requests.exceptions.HTTPError as errh:
         print(f" Erro HTTP: {errh}")
         return []
-    except requests.exceptions.ConnectionError as errc:
-        print(f" Erro de Conexão: {errc}")
-        return []
-    except requests.exceptions.Timeout as errt:
-        print(f" Timeout da Requisição: {errt}")
-        return []
-    except requests.exceptions.RequestException as err:
-        print(f" Ocorreu um erro na requisição: {err}")
-        return []
-    except Exception as e:
-        print(f" Erro ao coletar dados: {e}")
-        return []
 
-# tem que verificar o código existente, porém não é possível de mapear conforme os codigos? 
-def get_codigos_existentes(colecao):
+def codigos_already_exist(colecao):
     try:
         codigos = {doc['codigo'] for doc in colecao.find({}, {"codigo": 1, "_id": 0})}
-        print(f"✅ Encontrados {len(codigos)} códigos no MongoDB.")
+        print(f"Encontrados {len(codigos)} códigos no MongoDB.")
         return codigos
     except Exception as e:
-        print(f"❌ Erro ao buscar códigos no MongoDB: {e}")
         return set()
     
 
-def filtrar_novos_apartamentos(apartamentos_api, codigos_existentes):
+def new_apart(apartamentos_api, codigos_existentes):
     novos_apartamentos = []
     for apto in apartamentos_api:
-        # Certifique-se de que a chave 'codigo' existe e o valor não é None
         if apto.get("codigo") and apto["codigo"] not in codigos_existentes:
             novos_apartamentos.append(apto)
     
-    print(f"✅ Encontrados {len(novos_apartamentos)} novos apartamentos para inserir.")
+    print(f"Encontrados {len(novos_apartamentos)} novos apartamentos para inserir.")
     return novos_apartamentos
 
 def salvar_novos_no_mongo(novos_apartamentos):
     if not novos_apartamentos:
-        print("⚠ Nenhum novo apartamento para inserir.")
+        print("Itens to insert not found.")
         return
     try:
         cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
@@ -153,16 +127,14 @@ def salvar_novos_no_mongo(novos_apartamentos):
         db = cliente[DB_NAME]
         colecao = db[COLLECTION_NAME]
         
-        
         colecao.insert_many(novos_apartamentos)
-        print(f"✅ {len(novos_apartamentos)} novos apartamentos inseridos no MongoDB com sucesso!")
+        print(f" {len(novos_apartamentos)} new apart was insert on Mongo!")
     except Exception as e:
-        print(f"❌ Erro ao inserir dados no MongoDB: {e}")
+        print(f"Error to insert new ones {e}")
 
 
 def aggregate_mongo(aggregation_pipeline):
     if not aggregation_pipeline:
-        print("⚠ Nenhum novo apartamento para inserir.")
         return None
     try:
         cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
@@ -170,15 +142,11 @@ def aggregate_mongo(aggregation_pipeline):
         db = cliente[DB_NAME]
         colecao = db[COLLECTION_NAME]
         
-        
         resultado = colecao.aggregate(aggregation_pipeline)
         return resultado
     
     except Exception as e:
-        print(f"❌ Erro ao agregar dados no MongoDB: {e}")
+        print(f" Erro ao agregar dados no MongoDB: {e}")
     
 
-if __name__ == "__main__":
-    coletar_dados()
-    dados = coletar_dados()
-    salvar_novos_no_mongo(dados)
+

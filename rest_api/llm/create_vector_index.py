@@ -1,6 +1,6 @@
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from functools import lru_cache
-from llm.mongo_itaivan import coletar_dados, salvar_novos_no_mongo
+from llm.mongo_itaivan import collect_informations, salvar_novos_no_mongo
 from config import Settings
 
 settings = Settings()
@@ -42,7 +42,7 @@ def generate_embeddings(rl_property):
 
 def inserir_propriedades():
 
-    properties_list = coletar_dados(); # replace with the data we got from the website
+    properties_list = collect_informations()
     properties_with_embeddings = []
 
     for property in properties_list:
