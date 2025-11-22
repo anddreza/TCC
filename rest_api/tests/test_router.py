@@ -3,10 +3,16 @@ from fastapi.testclient import TestClient
 import pytest
 from main import app
 import json
+import pytest
+import os
+
 
 @pytest.fixture
 def client():
-    return TestClient(app)
+    with patch('routers.properties.get_properties_collection') as mock_get_collection:
+        mock_col = Mock()
+        mock_get_collection.return_value = mock_col
+        yield TestClient(app)
 
 @pytest.fixture
 def fake_property():

@@ -36,7 +36,7 @@ def parse_id(response: str):
         return []
     
 def get_properties_collection():
-    cliente = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
+    cliente = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=30000)
 
     db = cliente[DB_NAME]
     colecao = db[COLLECTION_NAME]

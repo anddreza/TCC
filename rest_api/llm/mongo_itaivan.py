@@ -9,7 +9,7 @@ settings = Settings()
 
 MONGO_URI = settings.mongo_uri 
 DB_NAME = "apartamentos"
-COLLECTION_NAME = "second_test_imoveis"
+COLLECTION_NAME = "third_test_imoveis"
 API_URL = "https://www.itaivan.com/retornar-imoveis-disponiveis"
 
 def collect_informations():
