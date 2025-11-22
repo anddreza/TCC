@@ -21,7 +21,6 @@ export const PropertiesSearch = () => {
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      height: '100vh',
       paddingTop: '100px',
       width: '100%', 
       backgroundColor: '#f0f2f5',
