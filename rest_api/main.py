@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     
     scheduler.add_job(
         func=insert_mongo,
-        trigger=IntervalTrigger(minutes=3),
+        trigger=IntervalTrigger(hour=24),
         id='get_properties_job',
         name='Get properties job',
         replace_existing=True
