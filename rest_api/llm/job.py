@@ -2,6 +2,7 @@ from llm.create_vector_index import generate_embeddings
 from llm.mongo_itaivan import collect_informations, salvar_novos_no_mongo
 
 def insert_mongo():
+    print("Job started: insert_mongo", flush=True)
     pageNumber = 1
     properties_list = []
     while True:
