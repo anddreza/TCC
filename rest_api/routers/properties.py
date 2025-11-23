@@ -57,5 +57,4 @@ def get_properties_id(id: str):
     #query mongodb to return id 
     print("ID recebido no endpoint:", id)
     result = findbyId(id)
-    insert_mongo()
     return result

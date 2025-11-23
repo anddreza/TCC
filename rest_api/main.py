@@ -16,23 +16,23 @@ scheduler = BackgroundScheduler()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    create_vector_search_index()
-    properties_collection = get_properties_collection()
-    properties_collection.create_index("codigo", unique=True)
+    # create_vector_search_index()
+    # properties_collection = get_properties_collection()
+    # properties_collection.create_index("codigo", unique=True)
     
-    scheduler.add_job(
-        func=insert_mongo,
-        trigger=IntervalTrigger(hours=24),
-        id='get_properties_job',
-        name='Get properties job',
-        replace_existing=True
-    )
-    #scheduler.start()
+    # scheduler.add_job(
+    #     func=insert_mongo,
+    #     trigger=IntervalTrigger(hours=24),
+    #     id='get_properties_job',
+    #     name='Get properties job',
+    #     replace_existing=True
+    # )
+    # #scheduler.start()
 
-    print("Starting schedulers", flush=True)
-    #insert_mongo()
-    yield
-    print("Shutting down schedulers", flush=True)
+    # print("Starting schedulers", flush=True)
+    # #insert_mongo()
+     yield
+    # print("Shutting down schedulers", flush=True)
 
 app = FastAPI(lifespan=lifespan)
     

@@ -1,12 +1,18 @@
+from contextlib import asynccontextmanager
 from unittest.mock import Mock, patch
 from fastapi.testclient import TestClient
 import pytest
-from main import app
 import json
 import pytest
 import os
 
-@pytest.fixture(autouse=True)
+@asynccontextmanager
+async def mock_lifespan(app):
+    yield
+    # Track shutdown
+    print("Mock lifespan shutdown called", flush=True)
+
+@pytest.fixture()
 def set_test_env():
     """Set environment variables for testing"""
     os.environ['ALLOW_ORIGIN'] = 'http://localhost:3000'
@@ -14,11 +20,13 @@ def set_test_env():
     os.environ['GOOGLE_API_KEY'] = 'fake-api-key'
 
 @pytest.fixture
-def client():
-    with patch('routers.properties.get_properties_collection') as mock_get_collection:
-        mock_col = Mock()
-        mock_get_collection.return_value = mock_col
-        yield TestClient(app)
+def client(set_test_env):
+    with patch('main.lifespan', new=mock_lifespan):
+        from main import app
+        with patch('routers.properties.get_properties_collection') as mock_get_collection:
+            mock_col = Mock()
+            mock_get_collection.return_value = mock_col
+            yield TestClient(app)
 
 @pytest.fixture
 def fake_property():
