@@ -1,18 +1,22 @@
 import requests
 import ssl
+import pytz
+
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from config import Settings
+from database_connection import get_properties_collection
+from datetime import datetime
 
 settings = Settings()
-
+br_timezone = pytz.timezone("America/Sao_Paulo")
 
 MONGO_URI = settings.mongo_uri 
 DB_NAME = "apartamentos"
-COLLECTION_NAME = "third_test_imoveis"
+COLLECTION_NAME = "second_test_imoveis"
 API_URL = "https://www.itaivan.com/retornar-imoveis-disponiveis"
 
-def collect_informations():
+def collect_informations(pageNumber):
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -64,7 +68,7 @@ def collect_informations():
         "opcaoimovel[nomeUrl]": "todas-as-opcoes",
         "codigoOpcaoimovel": 0,
         "retornomapaapp": "false",
-        "numeropagina": 1,
+        "numeropagina": pageNumber if pageNumber else 1,
         "numeroregistros": 20,
         "ordenacao": "dataatualizacaodesc",
         "codigoempreendimentomae": "",
@@ -73,17 +77,14 @@ def collect_informations():
         "cidades[estado]": "SC",
         "cidades[codigoestado]": 24,
         "cidades[nomeurlamigavel]": "jaragua-do-sul",
-        "cidades[datahoracadastro]": "2025-09-21 16:58:01", 
+        "cidades[datahoracadastro]": datetime.now(br_timezone).strftime("%Y-%m-%d %H:%M:%S"), 
         "cidades[nomeUrl]": "jaragua-do-sul",
         "cidades[estadoUrl]": "sc",
         "condominio[codigo]": 0,
         "condominio[nome]": "",
         "condominio[nomeUrl]": "",
         "todos-os-condominios": "",
-
     }       
-    
-
 
     try:
         response = requests.post(API_URL, headers=headers, data=body, timeout=10)
@@ -122,12 +123,9 @@ def salvar_novos_no_mongo(novos_apartamentos):
         print("Itens to insert not found.")
         return
     try:
-        cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
+        colecao = get_properties_collection()
 
-        db = cliente[DB_NAME]
-        colecao = db[COLLECTION_NAME]
-        
-        colecao.insert_many(novos_apartamentos)
+        colecao.insert_many(novos_apartamentos, ordered=False)
         print(f" {len(novos_apartamentos)} new apart was insert on Mongo!")
     except Exception as e:
         print(f"Error to insert new ones {e}")
@@ -137,10 +135,7 @@ def aggregate_mongo(aggregation_pipeline):
     if not aggregation_pipeline:
         return None
     try:
-        cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000,  tls=True, tlsAllowInvalidCertificates=False, tlsCAFile=ssl.get_default_verify_paths().cafile)
-
-        db = cliente[DB_NAME]
-        colecao = db[COLLECTION_NAME]
+        colecao = get_properties_collection()
         
         resultado = colecao.aggregate(aggregation_pipeline)
         return resultado

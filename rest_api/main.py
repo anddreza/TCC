@@ -1,8 +1,6 @@
-import ssl
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from pymongo import MongoClient
-from llm.mongo_itaivan import COLLECTION_NAME, DB_NAME, MONGO_URI
+from database_connection import create_vector_search_index
 from routers.properties import properties_router, get_properties_collection
 from fastapi.middleware.cors import CORSMiddleware
 from config import Settings
@@ -18,10 +16,13 @@ scheduler = BackgroundScheduler()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-
+    create_vector_search_index()
+    properties_collection = get_properties_collection()
+    properties_collection.create_index("codigo", unique=True)
+    
     scheduler.add_job(
-        func=fake_insert_mongo,
-        trigger=IntervalTrigger(minutes=1),
+        func=insert_mongo,
+        trigger=IntervalTrigger(minutes=3),
         id='get_properties_job',
         name='Get properties job',
         replace_existing=True
@@ -29,15 +30,7 @@ async def lifespan(app: FastAPI):
     scheduler.start()
 
     print("Starting schedulers", flush=True)
-#     colection = get_properties_collection()
-
-#     colection.create_index([("codigo", 1)], unique=True)
-#     count = colection.count_documents({})
-#     print(f"Total documents: {count}", flush=True)
-#     insert_mongo()
-#     count = colection.count_documents({})
-#     print(f"Total documents: {count}", flush=True)
-
+    #insert_mongo()
     yield
     print("Shutting down schedulers", flush=True)
 

@@ -6,6 +6,8 @@ import json
 from bson import ObjectId
 from llm.mongo_itaivan import COLLECTION_NAME, DB_NAME 
 from config import Settings
+from llm.job import insert_mongo
+from database_connection import get_properties_collection
 
 settings = Settings()
 properties_router = APIRouter()
@@ -35,14 +37,6 @@ def parse_id(response: str):
     except json.JSONDecodeError:
         return []
     
-def get_properties_collection():
-    cliente = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=30000)
-
-    db = cliente[DB_NAME]
-    colecao = db[COLLECTION_NAME]
-    return colecao
-
-
 def findbyId(id: str):
     try:
         colecao = get_properties_collection()
@@ -63,4 +57,5 @@ def get_properties_id(id: str):
     #query mongodb to return id 
     print("ID recebido no endpoint:", id)
     result = findbyId(id)
+    insert_mongo()
     return result

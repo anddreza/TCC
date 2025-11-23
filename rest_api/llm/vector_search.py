@@ -43,7 +43,7 @@ def create_vector(search_term):
 def create_aggregation(search_embedding_vector):
     firstStep = {
         "$vectorSearch" : {
-            "index": "vector_index",
+            "index": "property_vector_index",
             "path": "embedding_vector",
             "queryVector": search_embedding_vector,
             "numCandidates": 10,
