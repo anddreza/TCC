@@ -1,9 +1,6 @@
-from llm.create_vector_index import get_embeddings_model, procurar_banco_dados
+from llm.create_vector_index import get_embeddings_model, look_database
 from llm.mongo_itaivan import aggregate_mongo
 from llm.mongo_itaivan import aggregate_mongo
-
-#from llm.create_vector_index import procurar_banco_dados, get_embeddings_model
-#from rest_api.llm.create_vector_index import procurar_banco_dados, get_embeddings_model
 
 
 # 1. Create our search term
@@ -29,7 +26,7 @@ search_term_2 = {
 
 # 2. Generate a vector for the search property
 def create_vector(search_term):
-    search_vector = procurar_banco_dados(search_term)
+    search_vector = look_database(search_term)
 
     embeddings_model = get_embeddings_model()
     search_embedding_vector = embeddings_model.embed_query(search_vector)
@@ -38,8 +35,7 @@ def create_vector(search_term):
 
 
 # 3. Create the mongodb aggregation
-
-    # - vector search
+# - vector search
 def create_aggregation(search_embedding_vector):
     firstStep = {
         "$vectorSearch" : {

@@ -29,7 +29,7 @@ def create_vector_search_index():
                 {
                     "type": "vector",
                     "path": "embedding_vector",
-                    "numDimensions": 768,
+                    "numDimensions": 3072,
                     "similarity": "cosine"
                 }
             ]

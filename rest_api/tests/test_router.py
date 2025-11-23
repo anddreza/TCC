@@ -6,6 +6,12 @@ import json
 import pytest
 import os
 
+@pytest.fixture(autouse=True)
+def set_test_env():
+    """Set environment variables for testing"""
+    os.environ['ALLOW_ORIGIN'] = 'http://localhost:3000'
+    os.environ['MONGO_URI'] = 'mongodb://localhost:27017'
+    os.environ['GOOGLE_API_KEY'] = 'fake-api-key'
 
 @pytest.fixture
 def client():
@@ -18,7 +24,7 @@ def client():
 def fake_property():
     with open('tests/fake.json', 'r') as f:
         return json.load(f)
-    
+
 @pytest.fixture
 def mock_collection():
     with patch('routers.properties.get_properties_collection') as mock_get_collection:

@@ -1,5 +1,4 @@
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from functools import lru_cache
 from llm.mongo_itaivan import collect_informations, salvar_novos_no_mongo
 from config import Settings
 
@@ -16,7 +15,7 @@ def get_embeddings_model() -> GoogleGenerativeAIEmbeddings:
         google_api_key=GOOGLE_API_KEY,
     )
 
-def procurar_banco_dados(real_property):
+def look_database(real_property):
     return f""" 
     Tipo: {real_property["tipo"]}. 
     chuveiro: {(real_property["numerobanhos"])} . 
@@ -29,8 +28,7 @@ def procurar_banco_dados(real_property):
 
 
 def generate_embeddings(rl_property):
-    embedding_text = procurar_banco_dados(rl_property)
-
+    embedding_text = look_database(rl_property)
     embeddings_model = get_embeddings_model()
     embedding_vector = embeddings_model.embed_query(embedding_text) 
     
@@ -40,8 +38,7 @@ def generate_embeddings(rl_property):
     }
 
 
-def inserir_propriedades():
-
+def insert_property():
     properties_list = collect_informations()
     properties_with_embeddings = []
 
@@ -54,7 +51,7 @@ def inserir_propriedades():
 
 
 if __name__ == "__main__":
-    inserir_propriedades()
+    insert_property()
     print("Propriedades inseridas com sucesso!")
 
    

@@ -13,16 +13,6 @@ settings = Settings()
 GOOGLE_API_KEY = settings.google_api_key
 os.environ["GOOGLE_API_KEY"] = settings.google_api_key
 
-# backend_root = os.path.dirname(os.path.abspath(__file__))
-
-# server_params = StdioServerParameters(
-#     command="python3", 
-#     args=["properties_mcp_server.py"],
-#     env={"UV_PYTHON": "3.12",
-#           **os.environ
-#     }
-# )
-
 def llm_property_search(user_preferences: str):
     backend_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
     server_path = os.path.join(backend_root, "properties_mcp_server.py") 
@@ -48,14 +38,14 @@ def llm_property_search(user_preferences: str):
         market_researcher = Agent(
             role="Analista de Busca de Imóveis",
             goal="Utilizar a ferramenta find_properties tool para buscar imóveis conforme os critérios do usuário"
-            "Você precisa entender as preferências do usuário, ele passará as informações contando um pouco sobre como ele vive, o que ele faz e o que ele está procurando no apartamento ideal, para você entender melhor muitas pessoas vem de outras cidades trabalhar em empresas na cidade, então talvez encontrar um apartamento de 2 quartos com uma 1 vaga de garagem seja o que normalmente o usuário deseja. "
+            "Você precisa entender as preferências do usuário, ele passará as informações contando um pouco sobre como ele vive, o que ele faz e o que ele está procurando no apartamento ideal, para você entender melhor muitas pessoas vem de outras cidades trabalhar em empresas na cidade, então talvez encontrar um apartamento de 2 quartos com uma 1 vaga de garagem seja o que normalmente o usuário deseja."
             "Analise também cada detalhe do que ele enviar e não faça perguntas, trabalhe somente com as informações que foram enviadas, se estiver incompleto faça o melhor possível com o que foi enviado." 
             "Baseado na preferência do usuário procure dentro do banco de dados, não invente IDs, pegue o que já existe e envie a melhor opção para o usuário, conforme as necessidades que foram específicas, pode ser que as informações estejam incompletas e meio vagas, porém nem sempre o usuário irá ceder todas as informações necessárias.",
             backstory="Um analista automatizado que entende as preferências do usuário e usa a ferramenta find_properties tool para buscar imóveis compatíveis.",
             tools=tools,
             verbose=True, 
             allow_delegation=False, 
-            llm = LLM(model="gemini/gemini-2.0-flash", api_key=GOOGLE_API_KEY)
+            llm = LLM(model="gemini/gemini-2.5-flash", api_key=GOOGLE_API_KEY)
         )
         task_market_researcher = Task(
             description=(

@@ -1,9 +1,6 @@
 import requests
-import ssl
 import pytz
 
-from pymongo import MongoClient
-from dotenv import load_dotenv
 from config import Settings
 from database_connection import get_properties_collection
 from datetime import datetime

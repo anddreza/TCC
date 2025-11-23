@@ -13,7 +13,7 @@ def insert_mongo():
         properties_list += new_properties
         if len(new_properties) < 20:
             break
-        if pageNumber >= 20:
+        if pageNumber >= 1:
             break
     print(len(properties_list), flush=True)
 
