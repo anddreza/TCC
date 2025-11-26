@@ -5,13 +5,13 @@ import { ResultList } from '../components/Result';
 import { HomeOutlined } from '@ant-design/icons';
 
 export const PropertiesSearch = () => {
+  //to call endpoint until the use click on 'submit'
   const [getProperties] = useLazyGetPropertiesQuery();
-  const [propertiesId, setPropertiesId] = useState(["68d03e0f1f6b16923112cc1c", "68d03e0f1f6b16923112cc1d"]);
+  //state to hold the list of property IDs
+  const [propertiesId, setPropertiesId] = useState([]);
 
   const submit = async (value) => {
-    console.log('Search submitted with value:', value);
     const result = await getProperties(value);
-    console.log('Properties fetched:', result);
     setPropertiesId(result.data.ids);
   }
 

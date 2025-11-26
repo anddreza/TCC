@@ -16,7 +16,6 @@ export const Field = (props) => {
 
 export const Result = (props) => {
     const result = useGetPropertiesByIdQuery(props.id);
-    console.log("Result data:", result);
     const { data, isLoading } = result;
     if (isLoading || !data) return <div>Carregando...</div>;
 

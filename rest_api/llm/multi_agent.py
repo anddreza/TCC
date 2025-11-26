@@ -15,20 +15,15 @@ os.environ["GOOGLE_API_KEY"] = settings.google_api_key
 
 def llm_property_search(user_preferences: str):
     backend_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+    # pass server path
     server_path = os.path.join(backend_root, "properties_mcp_server.py") 
-
-    print(f"Backend root: {backend_root}")
-    print(f"Server path: {server_path}")
-    print(f"Server exists: {os.path.exists(server_path)}")
-    print(settings.mongo_uri)
-    print(settings.google_api_key)
 
     server_params = StdioServerParameters(
         command="python",
-        args=[server_path],
+        args=[server_path], 
         env={
-            "PYTHONPATH": backend_root,
-            "MONGO_URI": settings.mongo_uri,
+            "PYTHONPATH": backend_root, #env variable to find modules
+            "MONGO_URI": settings.mongo_uri, 
             "GOOGLE_API_KEY": settings.google_api_key,
         }
     )
@@ -67,10 +62,9 @@ def llm_property_search(user_preferences: str):
             tasks=[task_market_researcher],
             agents=[market_researcher],
             verbose=True,
-            max_rpm=25  
+            max_rpm=25  # rate limit (requests per minute)
         )
 
-        result = crew.kickoff()
-        print(result) 
+        result = crew.kickoff() 
         
         return result

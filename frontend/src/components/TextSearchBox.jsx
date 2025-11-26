@@ -1,11 +1,8 @@
-import React from 'react';
 import { Button, Form, Input } from 'antd';
 
 const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
 };
-
-
 
 export const TextSearchBox = (props) => {
     const handleSubmit = ({ Prompt }) => props.onSubmit(Prompt);

@@ -9,7 +9,6 @@ properties_router = APIRouter()
 
 @server.tool()
 def get_properties():
-    
     properties =  run_aggregation(search_term_1)
     for property in properties:
         if '_id' in property:

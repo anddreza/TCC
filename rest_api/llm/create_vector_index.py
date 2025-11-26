@@ -8,6 +8,7 @@ fields = ["numerobanhos", "numeroquartos", "numerosuites", "numerovagas", "valor
 
 GOOGLE_API_KEY = settings.google_api_key
 
+# config to embeddings model
 def get_embeddings_model() -> GoogleGenerativeAIEmbeddings:
     """Get cached embeddings model instance."""
     return GoogleGenerativeAIEmbeddings(
@@ -15,6 +16,7 @@ def get_embeddings_model() -> GoogleGenerativeAIEmbeddings:
         google_api_key=GOOGLE_API_KEY,
     )
 
+# create a string to look for in the database
 def look_database(real_property):
     return f""" 
     Tipo: {real_property["tipo"]}. 
@@ -37,21 +39,5 @@ def generate_embeddings(rl_property):
         "embeddings_text": embedding_text,
     }
 
-
-def insert_property():
-    properties_list = collect_informations()
-    properties_with_embeddings = []
-
-    for property in properties_list:
-        embeddings = generate_embeddings(property)
-        properties_with_embeddings.append(dict(property, **embeddings))
-        
-
-    salvar_novos_no_mongo(properties_with_embeddings)
-
-
-if __name__ == "__main__":
-    insert_property()
-    print("Propriedades inseridas com sucesso!")
 
    

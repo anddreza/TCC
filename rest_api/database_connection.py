@@ -17,6 +17,7 @@ def get_properties_collection():
     colecao = db[COLLECTION_NAME]
     return colecao
 
+# automatic creation of vector search index
 def create_vector_search_index():
     """Create vector search index if it doesn't exist."""
     properties_collection = get_properties_collection()
@@ -43,4 +44,4 @@ def create_vector_search_index():
         if not index_exists:
             properties_collection.create_search_index(vector_index_definition)
     except Exception as e:
-        print(f"Unexpected error creating vector search index: {e}", flush=True)
+        print(f"Error: {e}", flush=True)

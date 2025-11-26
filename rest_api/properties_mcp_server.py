@@ -4,16 +4,6 @@ from pydantic import BaseModel, Field
 
 mcp = FastMCP("Math")
 
-# search_term_1 = {
-#     "tipo": "Apartamento",
-#     "numerobanhos": 0,
-#     "numeroquartos": 0,
-#     "numerosuites": 0, 
-#     "numerovagas": 0,
-#     "valor": 0,
-#     "areainterna": 0
-# }
-
 class PropertySearchCriteria(BaseModel):
     tipo: str = Field(
         default="apartamento",
@@ -52,7 +42,7 @@ class PropertySearchCriteria(BaseModel):
     )
 
 
-@mcp.tool()
+@mcp.tool() # TOOL CALL BY LLM
 def get_properties(search_term: PropertySearchCriteria) -> list[str]:
     properties =  run_aggregation(search_term.__dict__)
 

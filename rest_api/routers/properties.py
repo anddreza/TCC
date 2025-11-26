@@ -14,13 +14,9 @@ properties_router = APIRouter()
 
 @properties_router.get("/properties")
 def get_properties(user_preferences: str):
-    
     result = llm_property_search(
         user_preferences=user_preferences)
     print("LLM Result:", result)
-
-#In the properties endpoint -> Return { "ids": property_ids } if the LLM worked
-#in the frontend we want to save the Ids in the state import {useState} from 'react'
 
     ids = parse_id(result.raw)
 

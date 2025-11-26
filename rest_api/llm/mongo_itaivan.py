@@ -1,6 +1,5 @@
 import requests
 import pytz
-
 from config import Settings
 from database_connection import get_properties_collection
 from datetime import datetime
@@ -25,7 +24,6 @@ def collect_informations(pageNumber):
         "accept": "*/*",
     }
 
-    # retorno no payload 
     body = {
         "finalidade": "aluguel",
         "codigounidade": "",
@@ -97,24 +95,6 @@ def collect_informations(pageNumber):
         print(f" Erro HTTP: {errh}")
         return []
 
-def codigos_already_exist(colecao):
-    try:
-        codigos = {doc['codigo'] for doc in colecao.find({}, {"codigo": 1, "_id": 0})}
-        print(f"Encontrados {len(codigos)} códigos no MongoDB.")
-        return codigos
-    except Exception as e:
-        return set()
-    
-
-def new_apart(apartamentos_api, codigos_existentes):
-    novos_apartamentos = []
-    for apto in apartamentos_api:
-        if apto.get("codigo") and apto["codigo"] not in codigos_existentes:
-            novos_apartamentos.append(apto)
-    
-    print(f"Encontrados {len(novos_apartamentos)} novos apartamentos para inserir.")
-    return novos_apartamentos
-
 def salvar_novos_no_mongo(novos_apartamentos):
     if not novos_apartamentos:
         print("Itens to insert not found.")
@@ -129,6 +109,7 @@ def salvar_novos_no_mongo(novos_apartamentos):
 
 
 def aggregate_mongo(aggregation_pipeline):
+    # call db agregation / query
     if not aggregation_pipeline:
         return None
     try:
@@ -138,7 +119,7 @@ def aggregate_mongo(aggregation_pipeline):
         return resultado
     
     except Exception as e:
-        print(f" Erro ao agregar dados no MongoDB: {e}")
+        print(f" Error: {e}")
     
 
 
