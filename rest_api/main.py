@@ -16,6 +16,8 @@ scheduler = BackgroundScheduler()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    #Create vector search index if it doesn't exist
+    #Start the job to insert new properties
     create_vector_search_index()
     properties_collection = get_properties_collection()
     properties_collection.create_index("codigo", unique=True)
