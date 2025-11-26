@@ -1,1 +1,0 @@
-Nenhuma propriedade foi encontrada
