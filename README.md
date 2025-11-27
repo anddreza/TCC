@@ -95,7 +95,7 @@ Sistema apresenta lista filtrada ao usuário.
 ```
 
 ```
-####  Caso de Uso 2 — Atualização automática da base de imóveis
+Caso de Uso 2 — Atualização automática da base de imóveis
 
 Ator principal: Sistema Objetivo: Atualizar periodicamente os imóveis disponíveis. 
 Fluxo principal:
@@ -106,7 +106,7 @@ Banco é atualizado.
 ```
 
 ```
-#### Caso de Uso 3 — Interação com o LLM
+Caso de Uso 3 — Interação com o LLM
 
 Ator principal: Sistema Objetivo: Interpretar solicitações feitas em linguagem natural. 
 Fluxo principal:
