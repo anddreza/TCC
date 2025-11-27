@@ -43,6 +43,7 @@ class PropertySearchCriteria(BaseModel):
 
 
 @mcp.tool() # TOOL CALL BY LLM
+# creates the search vector from the data the LLM gives it then runs an aggregation (makes a query) to get good properties
 def get_properties(search_term: PropertySearchCriteria) -> list[str]:
     properties =  run_aggregation(search_term.__dict__)
 

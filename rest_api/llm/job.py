@@ -19,7 +19,6 @@ def insert_mongo():
 
     properties_with_embeddings = []
     for property in properties_list:
-        # 
         embeddings = generate_embeddings(property)
         properties_with_embeddings.append(dict(property, **embeddings))
 
