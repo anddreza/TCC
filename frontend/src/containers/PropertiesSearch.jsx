@@ -23,6 +23,7 @@ export const PropertiesSearch = () => {
       alignItems: 'center',
       paddingTop: '100px',
       width: '100%', 
+      minHeight: '100vh',
       backgroundColor: '#f0f2f5',
     }}>
       <HomeOutlined style={{ fontSize: '50px' }} />

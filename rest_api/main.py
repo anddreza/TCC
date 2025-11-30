@@ -34,6 +34,7 @@ async def lifespan(app: FastAPI):
     print("Starting schedulers", flush=True)
     yield
     print("Shutting down schedulers", flush=True)
+    scheduler.shutdown()
 
 app = FastAPI(lifespan=lifespan) # start fastapi 
     
