@@ -149,3 +149,7 @@ Banco de Dados: armazenamento e atualização diária
 - api/models/user_model.py – modelo de dados
 - frontend/src/pages/Home.jsx – tela inicial
 - frontend/src/services/api.js – comunicação com API
+
+
+## 11. Vídeo da aplicação
+![Demonstração](assistente-imoveis.webm)
