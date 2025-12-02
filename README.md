@@ -3,6 +3,19 @@
 ## 1. Descrição geral (objetivo e motivação)
 Foi desenvolvido um sistema inteligente, baseado em Modelos de Linguagem de Grande Escala (LLMs), para a busca de imóveis disponíveis para locação no município de Jaraguá do Sul. O sistema terá como finalidade possibilitar a interação em linguagem natural, de modo que o usuário possa expressar suas necessidades habitacionais de forma simples e intuitiva, enquanto a inteligência artificial processa essas informações para realizar buscas mais precisas e personalizadas.
 
+Ao longo dos últimos anos, o processo migratório para o município de Jaraguá do Sul tem apresentado crescimento significativo. De acordo com o Censo Demográfico do Instituto Brasileiro de Geografia e Estatística (IBGE, 2022), a cidade recebeu aproximadamente 40 mil migrantes entre 2010 e 2022. Esse cenário contribuiu não apenas para a expansão do número de imobiliárias na região, mas também para a elevação dos valores de aluguel. Um indicativo desse movimento foi apresentado pelo Conselho Regional de Corretores de Imóveis de Santa Catarina (CRECI-SC), que em 2025 registrou a existência de 171 imobiliárias ativas no município, incluindo algumas das mais conhecidas, como Itaivan, Seculus e Poder Imóveis.
+
+Paralelamente, pesquisas de mercado apontam plataformas digitais como Zap Imóveis, Viva Real, Chave na Mão e Quinto Andar como recursos comumente utilizados para a busca de imóveis. Entretanto, o diferencial do presente projeto reside na proposta de oferecer ao usuário uma ferramenta capaz de retornar, de forma simplificada e com base em comandos de linguagem natural, opções de imóveis compatíveis tanto com o orçamento disponível quanto com a localização desejada.
+
+Frente a isso, foi estruturado um projeto com LLM (Large Language Models).  Segundo Cunningham, Archambault e Kung (2024), ele é essencial não somente para reduzir custos, mas também para tornar a aplicação acessível e sustentável a longo prazo. Ele é um tipo de Inteligência Artificial (IA) que tem sido amplamente utilizada em pesquisas, aplicações open-source etc. Todos esses projetos podem ser tanto da área da saúde como a possibilidade de auxiliar um assistente médico sobre a literatura necessária para continuar atuando no seu cargo, conforme destacam Alberts et al. (2023), quanto na área de telecomunicações onde é apresentado um trabalho de Zhou et al. (2024, p. 2) onde é possível “os LLMs podem executar diversas tarefas downstream com base em instruções humanas, abrindo caminho para o 6G habilitado para inteligência geral artificial (AGI)”. Outro grande exemplo a favor dos estudantes de tecnologia é a possibilidade de ter um código compreendido, conforme as informações passadas dentro do LLM, um exemplo disso foi criado com o Nam et al. (2024). Esses e outros projetos podem ser encontrados em diversas bibliografias disponíveis.
+
+O projeto consiste no desenvolvimento de um sistema voltado para a busca de imóveis disponíveis para locação no município de Jaraguá do Sul. A proposta baseia-se na utilização de um prompt, no qual o usuário insere informações em linguagem natural, permitindo o processamento, filtragem e posterior visualização dos imóveis disponíveis para aluguel. Ressalta-se que o escopo da pesquisa está restrito à cidade de Jaraguá do Sul, tendo como foco exclusivo o processo de locação e considerando inicialmente dados provenientes de uma imobiliária específica. Dessa forma, não contempla a análise de imóveis para compra, tampouco o contato direto entre o usuário e a imobiliária. Para esses casos, será disponibilizado um link de referência direcionando às informações originais.
+
+A arquitetura da solução será estruturada como um sistema de múltiplos agentes de Inteligência Artificial, desenvolvidos em Python e implementados por meio da biblioteca CrewAI, em conjunto com o LangChain e um modelo da família Gemini, acessado via API da Google. O fluxo operacional será dividido em três etapas principais: (i) coleta e interpretação inicial das informações fornecidas pelo usuário; (ii) filtragem e organização dos dados conforme os critérios especificados; e (iii) retorno dos resultados processados ao usuário por meio de uma interface simplificada.
+
+No que se refere ao tratamento de dados, as primeiras investigações contemplam a utilização de API pública disponibilizada no site da imobiliária. A estratégia prevê a extração periódica (diária) das rotas necessárias para atualização das informações, garantindo a manutenção de um banco de dados com registros válidos. Nesse processo, imóveis que não estiverem mais disponíveis para locação serão automaticamente removidos. Posteriormente, os dados atualizados serão consultados por meio de APIs e apresentados ao usuário via interface, em conformidade com os comandos inseridos. Todo o processo será conduzido por meio de modelos de linguagem natural (LLMs), de modo a viabilizar a interação em linguagem acessível ao usuário.
+
+
 ## 2. Motivação
 - A solução foi desenvolvida para resolver o problema da classificação e busca inteligente de propriedades imobiliárias, motivada pela necessidade de incorporar modelos de linguagem (LLMs) capazes de interpretar preferências de usuários e realizar consultas semânticas de forma autônoma e contextualizada.
 - É combinado  múltiplos agentes de IA (CrewAI + LangChain + Gemini) para interpretar linguagem natural, estruturar consultas e retornar imóveis compatíveis com os critérios fornecidos. O uso do servidor MCP permite modularidade e flexibilidade, enquanto a API centraliza a orquestração do fluxo de dados.
@@ -65,56 +78,8 @@ GOOGLE_API_KEY="example_public_google_api_key"
 2. RNF002 – O sistema deve utilizar um LLM de baixo custo operacional e de fácil manutenção (ex.: LLaMA 3 via Groq).
 3. RNF003 – A interface deve ser simples, responsiva e acessível via navegador, permitindo a correta visualização das informações em diferentes tamanhos de tela.
 ```
-## 7. Histórico de Decisões
-1. Adoção do FastAPI como framework de back-end
-Optou-se pelo FastAPI devido à sua elevada performance, suporte nativo a programação assíncrona e forte tipagem baseada em Pydantic. Esses fatores permitiram a construção de uma API robusta, com validação automática de dados, documentação integrada e baixo tempo de resposta, aspectos essenciais para uma aplicação que integra modelos de IA e operações de busca vetorial.
 
-2. Utilização de um LLM para processamento semântico
-A escolha de empregar um modelo de linguagem (LLM) foi motivada pela necessidade de interpretar preferências dos usuários de forma contextual e realizar transformações semânticas que possibilitam consultas mais precisas. O LLM atua como componente central na geração do vetor de busca, na extração de intenções e na coordenação entre agentes internos.
-
-3. Introdução do servidor MCP como ponte entre a API e ferramentas externas
-O servidor MCP foi adotado como mecanismo facilitador da comunicação entre o LLM e as ferramentas responsáveis por executar tarefas específicas, como a geração de vetores de busca e a execução de agregações no banco de dados. Essa abordagem modular melhora a escalabilidade, permitindo a adição de novas capacidades sem alterar o núcleo da aplicação.
-
-4. Definição de um pipeline de busca baseado em agregações
-A realização da consulta às propriedades por meio de agregações foi escolhida por oferecer maior flexibilidade na definição de etapas de busca, filtragem e seleção de campos retornados. Essa arquitetura permite otimizar a precisão da recomendação e ajustar os critérios conforme a evolução do projeto.
-
-5. Padronização da comunicação entre componentes via JSON/HTTP
-Estabeleceu-se que a comunicação entre o front-end, API, LLM e MCP ocorreria por meio de requisições HTTP utilizando JSON como formato de troca. A decisão prioriza interoperabilidade, simplicidade e compatibilidade com diferentes tecnologias e ambientes de implantação.
-
-## 8. Modelagem 
-### Caso de Uso
-```
-Caso de Uso 1 — Buscar imóveis para locação
-
-Ator principal: Usuário Objetivo: Consultar imóveis disponíveis conforme preferências. 
-Fluxo principal:
-Usuário insere comandos em linguagem natural.
-Sistema interpreta critérios (ex.: preço, localização, número de quartos).
-Sistema recupera dados da base.
-Sistema apresenta lista filtrada ao usuário.
-```
-
-```
-Caso de Uso 2 — Atualização automática da base de imóveis
-
-Ator principal: Sistema Objetivo: Atualizar periodicamente os imóveis disponíveis. 
-Fluxo principal:
-Sistema acessa API da imobiliária.
-Dados são extraídos e validados.
-Registros desatualizados são removidos.
-Banco é atualizado.
-```
-
-```
-Caso de Uso 3 — Interação com o LLM
-
-Ator principal: Sistema Objetivo: Interpretar solicitações feitas em linguagem natural. 
-Fluxo principal:
-Comando do usuário é enviado ao LLM Gemini.
-LLM interpreta e converte para parâmetros estruturados.
-Sistema executa consulta com base na interpretação.
-```
-## 9. BPMN (Descrição textual)
+## 7. BPMN (Descrição textual)
 - Usuário → envia comando → Frontend
 - Frontend → envia requisição → API FastAPI
 - API → envia texto → LLM Gemini
@@ -122,7 +87,7 @@ Sistema executa consulta com base na interpretação.
 - Servidor MCP → executa busca → Banco de Dados
 - Banco → retorna resultados → MCP → API → Frontend
 
-## 10. Diagrama de arquitetura
+## 8. Diagrama de arquitetura
 #### Nível 1 — Diagrama de Contexto
 
 O sistema recebe comandos do usuário, interpreta via LLM Gemini, consulta o banco por meio do MCP e retorna resultados para o usuário.
@@ -151,5 +116,9 @@ Banco de Dados: armazenamento e atualização diária
 - frontend/src/services/api.js – comunicação com API
 
 
-## 11. Vídeo da aplicação
+## 9. Vídeo da aplicação
 ![Demonstração](assistente-imoveis.webm)
+
+
+## 10. Diagrama do funcionamento
+![Demonstração](diagrama.png)
